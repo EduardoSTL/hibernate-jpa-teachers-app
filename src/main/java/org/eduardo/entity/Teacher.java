@@ -1,10 +1,7 @@
 package org.eduardo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -15,6 +12,14 @@ import lombok.NoArgsConstructor;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "teacher_id")
     private Long id;
+
+    @Column(name = "first_name")
+    private String nombre;
+
+    @Column(name = "last_name")
+    private String apellido;
+
 
 }
