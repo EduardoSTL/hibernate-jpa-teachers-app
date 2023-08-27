@@ -3,6 +3,8 @@ package org.eduardo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,5 +23,10 @@ public class Teacher {
     @Column(name = "last_name")
     private String apellido;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
+    @JoinTable(name = "subject/teacher", joinColumns = @JoinColumn(name="teacher_id")
+            , inverseJoinColumns = @JoinColumn(name = "group_id")
+            , uniqueConstraints = @UniqueConstraint(columnNames={"group_id"}))
+    private List<Group> groups;
 
 }
