@@ -3,6 +3,8 @@ package org.eduardo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -15,4 +17,16 @@ public class Student {
     @Column(name = "student_id")
     private Integer id;
 
+    @Column(name = "first_name")
+    private String nombre;
+
+    @Column(name = "last_name")
+    private String apellido;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @OneToMany(mappedBy = "students")
+    private List<Mark> marks;
 }
