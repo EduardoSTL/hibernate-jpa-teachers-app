@@ -21,5 +21,12 @@ public class Mark {
 
     private Integer mark;
 
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 }
