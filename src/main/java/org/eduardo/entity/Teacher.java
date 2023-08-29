@@ -25,8 +25,11 @@ public class Teacher {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinTable(name = "subject/teacher", joinColumns = @JoinColumn(name="teacher_id")
-            , inverseJoinColumns = @JoinColumn(name = "group_id")
-            , uniqueConstraints = @UniqueConstraint(columnNames={"group_id"}))
+            , inverseJoinColumns = {
+            @JoinColumn(name = "group_id"),
+            @JoinColumn(name = "subject_id")},
+            uniqueConstraints = @UniqueConstraint(columnNames = {"group_id", "subject_id"}))
     private List<Group> groups;
+
 
 }
