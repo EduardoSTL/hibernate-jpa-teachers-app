@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@AllArgsConstructor
 @Table(name = "marks")
 public class Mark {
     @Id
@@ -17,6 +18,7 @@ public class Mark {
     @Column(name = "mark_id")
     private Integer id;
 
+    @Column(name = "date/time")
     private LocalDateTime date;
 
     private Integer mark;
@@ -25,8 +27,20 @@ public class Mark {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd,MM,yyyy");
+        String dateFormat = date.format(formatter);
+        return "{" +
+                "id=" + id +
+                ", date=" + dateFormat + '\'' +
+                ", mark=" + mark + '\'' +
+                ", subject=" + subject + '\'' +
+                ", student=" + student + '\'' +
+                '}';
+    }
 }
