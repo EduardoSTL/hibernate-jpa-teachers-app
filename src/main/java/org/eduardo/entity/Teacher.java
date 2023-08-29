@@ -28,8 +28,6 @@ public class Teacher {
             , inverseJoinColumns = {
             @JoinColumn(name = "group_id"),
             @JoinColumn(name = "subject_id")},
-            uniqueConstraints = @UniqueConstraint(columnNames = {"group_id", "subject_id"}))
+            uniqueConstraints = @UniqueConstraint(columnNames = {"teacher_id" ,"group_id", "subject_id"}))
     private List<Group> groups;
-
-
 }
