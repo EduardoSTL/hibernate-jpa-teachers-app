@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,4 +22,7 @@ public class Subject {
 
     @Column(name = "title")
     private String titulo;
+
+    @OneToMany(mappedBy = "subjects")
+    private List<Mark> marks;
 }
