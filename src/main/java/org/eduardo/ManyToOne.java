@@ -3,14 +3,14 @@ package org.eduardo;
 import jakarta.persistence.EntityManager;
 import org.eduardo.entity.Group;
 import org.eduardo.entity.Student;
-import org.eduardo.entity.Subject;
 import org.eduardo.util.JpaUtil;
 
-public class OneToOne {
+public class ManyToOne {
     public static void main(String[] args) {
         EntityManager manager = JpaUtil.getEntityManager();
 
         try{
+            manager.getTransaction().begin();
             Group group1 = new Group(1, null, null, null);
             manager.persist(group1);
             Student student1 = new Student(1, "Juan", "Perez", null, null);
