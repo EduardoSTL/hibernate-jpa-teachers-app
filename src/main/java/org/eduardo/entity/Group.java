@@ -17,9 +17,10 @@ public class Group {
     @Column(name = "group_id")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+    // En la entidad Group
+    @ManyToMany(mappedBy = "teachers")
+    private List<Teacher> teachers;
+
 
     @OneToMany(mappedBy = "groups")
     private List<Student> students;
