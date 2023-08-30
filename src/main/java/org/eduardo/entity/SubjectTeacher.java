@@ -11,27 +11,30 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@IdClass(SubjectTeacherId.class)
 @Table(name = "Subject_teacher")
 public class SubjectTeacher {
 
-    @EmbeddedId
-    private SubjectTeacherId id;
+    /*@EmbeddedId
+    private SubjectTeacherId id;*/
 
+    @Id
     @ManyToOne
-    @MapsId("group_Id")
     @JoinColumn(name = "group_id")
     private Group group;
 
+    @Id
     @ManyToOne
-    @MapsId("teacher_Id")
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+}
 
-    //Backup
+//Backup
     /*@ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
@@ -43,4 +46,3 @@ public class SubjectTeacher {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject ;*/
-}

@@ -23,6 +23,6 @@ public class Subject {
     @Column(name = "title")
     private String titulo;
 
-    @OneToMany(mappedBy = "subjects")
+    @OneToMany(mappedBy = "subject")
     private List<Mark> marks;
 }

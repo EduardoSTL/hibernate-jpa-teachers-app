@@ -17,7 +17,7 @@ public class Group {
     @Column(name = "group_id")
     private Integer id;
 
-    @OneToMany(mappedBy = "groups")
+    @OneToMany(mappedBy = "group")
     private List<SubjectTeacher> subjectTeachers;
 
     @OneToMany(mappedBy = "group")
