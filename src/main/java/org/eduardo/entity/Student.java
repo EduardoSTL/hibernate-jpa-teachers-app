@@ -27,6 +27,6 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @OneToMany(mappedBy = "students")
+    @OneToMany(mappedBy = "student")
     private List<Mark> marks;
 }

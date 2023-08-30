@@ -42,5 +42,5 @@ public class SubjectTeacher {
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
-    private Subject subject;*/
+    private Subject ;*/
 }
