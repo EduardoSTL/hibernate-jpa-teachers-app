@@ -23,12 +23,6 @@ public class Teacher {
     @Column(name = "last_name")
     private String apellido;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
-    @JoinTable(name = "subject/teacher", joinColumns = @JoinColumn(name = "teacher_id"),
-            inverseJoinColumns = {
-                    @JoinColumn(name = "group_id"),
-                    @JoinColumn(name = "subject_id")},
-            uniqueConstraints = @UniqueConstraint(columnNames = {"teacher_id" ,"group_id", "subject_id"}))
-    private List<Group> groups;
-
+    @OneToMany(mappedBy = "teacher")
+    private List<SubjectTeacher> subjectTeachers;
 }

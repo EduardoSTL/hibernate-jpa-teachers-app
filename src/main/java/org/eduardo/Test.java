@@ -7,10 +7,12 @@ import org.eduardo.entity.Subject;
 import org.eduardo.entity.Teacher;
 import org.eduardo.util.JpaUtil;
 
+import java.util.List;
+
 public class Test {
     public static void main(String[] args) {
         EntityManager manager = JpaUtil.getEntityManager();
-        try {
+        /*try {
             manager.getTransaction().begin();
             // Crear instancias de las entidades
             Teacher teacher1 = new Teacher(1, "Juan", "Perez",null);
@@ -28,8 +30,7 @@ public class Test {
             teacher1.getGroups().add(group1);
             teacher2.getGroups().add(group2);
 
-            group1.setTeacher(teacher1);
-            group2.setTeacher(teacher2);
+            group1.setTeachers(teacher1);
 
             group1.setSubject(mathSubject);
             group2.setSubject(scienceSubject);
@@ -60,6 +61,6 @@ public class Test {
             e.printStackTrace();
         } finally {
             manager.close();
-        }
+        }*/
     }
 }

@@ -17,12 +17,10 @@ public class Group {
     @Column(name = "group_id")
     private Integer id;
 
-    // En la entidad Group
-    @ManyToMany(mappedBy = "teachers")
-    private List<Teacher> teachers;
-
-
     @OneToMany(mappedBy = "groups")
+    private List<SubjectTeacher> subjectTeachers;
+
+    @OneToMany(mappedBy = "group")
     private List<Student> students;
 
     @ManyToOne

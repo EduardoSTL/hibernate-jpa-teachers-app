@@ -7,6 +7,8 @@
         <class>org.eduardo.entity.Subject</class>
         <class>org.eduardo.entity.Teacher</class>
         <class>org.eduardo.entity.Mark</class>
+        <class>org.eduardo.entity.SubjectTeacher</class>
+        <class>org.eduardo.entity.SubjectTeacherId</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/teachers_db?serverTimezone=America/El_Salvador"/>
