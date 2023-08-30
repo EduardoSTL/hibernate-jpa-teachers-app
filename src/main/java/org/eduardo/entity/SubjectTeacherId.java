@@ -13,10 +13,4 @@ public class SubjectTeacherId implements Serializable {
     private Group group;
     private Teacher teacher;
     private Subject subject;
-
-    /*@Column(name = "group_id")
-    private Integer groupId;
-
-    @Column(name = "teacher_id")
-    private Integer teacherId;*/
 }

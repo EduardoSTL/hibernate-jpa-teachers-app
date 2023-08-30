@@ -15,9 +15,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "Subject_teacher")
 public class SubjectTeacher {
 
-    /*@EmbeddedId
-    private SubjectTeacherId id;*/
-
     @Id
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -33,16 +30,3 @@ public class SubjectTeacher {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 }
-
-//Backup
-    /*@ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
-
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
-
-    @ManyToOne
-    @JoinColumn(name = "subject_id")
-    private Subject ;*/
