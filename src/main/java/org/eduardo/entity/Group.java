@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "groups")
+@Table(name = "grupos")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

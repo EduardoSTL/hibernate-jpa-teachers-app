@@ -34,7 +34,7 @@ public class Mark {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd,MM,yyyy");
-        String dateFormat = date.format(formatter);
+        String dateFormat = (date != null) ? date.format(formatter) : null;
         return "{" +
                 "id=" + id +
                 ", date=" + dateFormat + '\'' +

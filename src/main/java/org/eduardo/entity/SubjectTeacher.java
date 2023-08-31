@@ -17,6 +17,11 @@ public class SubjectTeacher {
 
     @Id
     @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+    @Id
+    @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
 
@@ -24,9 +29,4 @@ public class SubjectTeacher {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "subject_id")
-    private Subject subject;
 }
