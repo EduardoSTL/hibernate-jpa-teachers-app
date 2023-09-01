@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @IdClass(SubjectTeacherId.class)
 @Table(name = "Subject_teacher")
 public class SubjectTeacher {
-
     @Id
     @ManyToOne
     @JoinColumn(name = "subject_id")

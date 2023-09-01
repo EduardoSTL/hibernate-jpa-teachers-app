@@ -11,9 +11,9 @@ public class ManyToOne {
 
         try{
             manager.getTransaction().begin();
-            Group group1 = new Group(1, null, null, null);
+            Group group1 = new Group(1, "informatica");
             manager.persist(group1);
-            Student student1 = new Student(1, "Juan", "Perez", null, null);
+            Student student1 = new Student(1, "Juan", "Perez", group1, null);
             student1.setGroup(group1);
             manager.persist(student1);
             manager.getTransaction().commit();

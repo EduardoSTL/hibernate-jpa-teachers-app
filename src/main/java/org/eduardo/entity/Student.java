@@ -3,6 +3,7 @@ package org.eduardo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,5 +29,5 @@ public class Student {
     private Group group;
 
     @OneToMany(mappedBy = "student")
-    private List<Mark> marks;
+    private List<Mark> marks = new ArrayList<>();
 }

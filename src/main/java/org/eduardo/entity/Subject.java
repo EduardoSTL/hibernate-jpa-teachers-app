@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,5 +25,5 @@ public class Subject {
     private String titulo;
 
     @OneToMany(mappedBy = "subject")
-    private List<Mark> marks;
+    private List<Mark> marks = new ArrayList<>();
 }

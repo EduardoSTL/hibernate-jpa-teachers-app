@@ -18,7 +18,7 @@ public class Mark {
     @Column(name = "mark_id")
     private Integer id;
 
-    @Column(name = "date/time")
+    @Column(name = "date_time")
     private LocalDateTime date;
 
     private Integer mark;
@@ -39,8 +39,8 @@ public class Mark {
                 "id=" + id +
                 ", date=" + dateFormat + '\'' +
                 ", mark=" + mark + '\'' +
-                ", subject=" + subject + '\'' +
-                ", student=" + student + '\'' +
+                /*", subject=" + subject + '\'' +
+                ", student=" + student + '\'' +*/
                 '}';
     }
 }
