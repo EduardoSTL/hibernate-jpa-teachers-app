@@ -1,5 +1,6 @@
 package org.eduardo.entity;
 
+import com.sun.istack.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +26,6 @@ public class Subject {
     private String titulo;
 
     @OneToMany(mappedBy = "subject")
+    @Nullable
     private List<Mark> marks = new ArrayList<>();
 }
