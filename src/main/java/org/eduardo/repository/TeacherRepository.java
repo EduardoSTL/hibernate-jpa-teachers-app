@@ -3,6 +3,7 @@ package org.eduardo.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.eduardo.entity.Teacher;
+import org.eduardo.util.EntityManagerUtil;
 
 import javax.swing.*;
 import java.util.List;
@@ -11,8 +12,8 @@ public class TeacherRepository implements CrudGenericRepository<Teacher>{
 
     private final EntityManager manager;
 
-    public TeacherRepository(EntityManager manager) {
-        this.manager = manager;
+    public TeacherRepository() {
+        this.manager = EntityManagerUtil.getEntityManager();
     }
 
     @Override

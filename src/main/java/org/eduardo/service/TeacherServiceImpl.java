@@ -6,19 +6,17 @@ import org.eduardo.exception.dataNotFoundException;
 import org.eduardo.exception.dataRecoveryException;
 import org.eduardo.repository.CrudGenericRepository;
 import org.eduardo.repository.TeacherRepository;
+import org.eduardo.util.EntityManagerUtil;
 
 import java.util.List;
 import java.util.Optional;
 
 public class TeacherServiceImpl implements GenericService<Teacher>{
 
-    private final EntityManager manager;
-
     private CrudGenericRepository<Teacher> repository;
 
-    public TeacherServiceImpl(EntityManager manager) {
-        this.manager = manager;
-        this.repository = new TeacherRepository(manager);
+    public TeacherServiceImpl() {
+        this.repository = new TeacherRepository();
     }
 
     @Override
@@ -35,23 +33,30 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
 
     @Override
     public Iterable<Teacher> findAll() {
+        List<Teacher> teachers;
+        EntityManager manager = EntityManagerUtil.getEntityManager();
         try {
-            List<Teacher> teachers = repository.findAll();
+            manager.getTransaction().begin();
+            teachers = repository.findAll();
             if (teachers.isEmpty()) {
                 throw new dataNotFoundException("No se encontraron registros de Teachers");
             }
-            return teachers;
+            manager.getTransaction().commit();
         } catch (Exception e) {
             manager.getTransaction().rollback();
             e.printStackTrace();
             throw new dataRecoveryException("Error al recuperar la lista de profesores.", e);
         } finally {
-            manager.close();
+            if (manager.isOpen()) {
+                manager.close();
+            }
         }
+        return teachers;
     }
 
     @Override
     public Teacher save(Teacher entidad) {
+        EntityManager manager = EntityManagerUtil.getEntityManager();
         try {
             System.out.println("--------- Guardar Teacher ---------");
             manager.getTransaction().begin();
@@ -69,6 +74,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
 
     @Override
     public void deleteById(Integer id) {
+        EntityManager manager = EntityManagerUtil.getEntityManager();
         try {
             System.out.println("--------- Eliminar Teacher ---------");
             manager.getTransaction().begin();
@@ -84,6 +90,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
 
     @Override
     public void edit(Integer id) {
+        EntityManager manager = EntityManagerUtil.getEntityManager();
         try {
             System.out.println("--------- Editar Teacher ---------");
             manager.getTransaction().begin();

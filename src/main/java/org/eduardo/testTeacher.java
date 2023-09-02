@@ -11,25 +11,26 @@ public class testTeacher {
         EntityManager em = JpaUtil.getEntityManager();
 
         //Instanciar serviceImpl
-        GenericService<Teacher> teacherService = new TeacherServiceImpl(em);
+        GenericService<Teacher> teacherService = new TeacherServiceImpl();
 
         // Crear un nuevo registro
         Teacher newTeacher = new Teacher();
-        newTeacher.setNombre("Andres");
-        newTeacher.setApellido("Mendez");
+        newTeacher.setNombre("uno");
+        newTeacher.setApellido("dos");
 
         // Guardar el registro en la base de datos
         Teacher savedTeacher = teacherService.save(newTeacher);
-        System.out.println("Teacher guardado con ID: " + savedTeacher.getId() + "Nombre: " + savedTeacher.getNombre());
+        System.out.println("Teacher guardado con ID: " + savedTeacher.getId() + ", Nombre: " + savedTeacher.getNombre() +
+        ", Apellido: " + savedTeacher.getApellido());
 
         // Buscar un teacher por ID
-        int teacherId = 1;
+        Integer teacherId = 1;
         teacherService.findById(teacherId).ifPresent(teacher -> {
             System.out.println("Teacher encontrado por ID: " + teacher);
         });
 
         // Editar un Teacher por ID
-        int teacherToEditId = 1; // Reemplaza con el ID del Teacher que deseas editar
+        Integer teacherToEditId = 2; // Reemplaza con el ID del Teacher que deseas editar
         teacherService.edit(teacherToEditId);
 
         // Buscar todos los teachers
