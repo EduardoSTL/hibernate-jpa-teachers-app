@@ -52,19 +52,19 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
 
     @Override
     public Teacher save(Teacher entidad) {
-        Teacher teacher = null; // Declara la variable teacher aquí para que esté en el ámbito correcto
         try {
             System.out.println("--------- Guardar Teacher ---------");
             manager.getTransaction().begin();
-            repository.save(entidad); // Guarda la entidad y asigna el resultado a teacher
+            Teacher savedTeacher = repository.save(entidad);
             manager.getTransaction().commit();
+            return savedTeacher;
         } catch (Exception e){
             manager.getTransaction().rollback();
             e.printStackTrace();
+            return null;
         } finally {
             manager.close();
         }
-        return teacher;
     }
 
     @Override

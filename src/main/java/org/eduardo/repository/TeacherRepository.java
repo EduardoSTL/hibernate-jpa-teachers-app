@@ -26,12 +26,13 @@ public class TeacherRepository implements CrudGenericRepository<Teacher>{
     }
 
     @Override
-    public void save(Teacher teacher) {
+    public Teacher save(Teacher teacher) {
         if (teacher.getId()!=null && teacher.getId()>0){
             manager.merge(teacher);
         } else {
             manager.persist(teacher);
         }
+        return teacher;
     }
 
     @Override

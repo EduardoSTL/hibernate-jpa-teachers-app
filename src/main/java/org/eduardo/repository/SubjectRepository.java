@@ -25,12 +25,13 @@ public class SubjectRepository implements CrudGenericRepository<Subject>{
     }
 
     @Override
-    public void save(Subject subject) {
+    public Subject save(Subject subject) {
         if (subject.getId()!= null && subject.getId()<0){
             manager.merge(subject);
         } else {
             manager.persist(subject);
         }
+        return null;
     }
 
     @Override

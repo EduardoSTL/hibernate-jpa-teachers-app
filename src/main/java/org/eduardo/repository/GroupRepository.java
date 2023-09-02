@@ -26,12 +26,13 @@ public class GroupRepository implements CrudGenericRepository<Group> {
     }
 
     @Override
-    public void save(Group group) {
+    public Group save(Group group) {
         if (group.getId()!=null && group.getId()>0){
             manager.merge(group);
         } else {
             manager.persist(group);
         }
+        return null;
     }
 
     @Override

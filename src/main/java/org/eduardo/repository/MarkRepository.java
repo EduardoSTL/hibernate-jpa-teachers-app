@@ -2,9 +2,7 @@ package org.eduardo.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import org.eduardo.entity.Group;
 import org.eduardo.entity.Mark;
-import org.eduardo.entity.Teacher;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -30,12 +28,13 @@ public class MarkRepository implements CrudGenericRepository<Mark>{
     }
 
     @Override
-    public void save(Mark mark) {
+    public Mark save(Mark mark) {
         if (mark.getId()!=null && mark.getId()>0){
             manager.merge(mark);
         } else {
             manager.persist(mark);
         }
+        return null;
     }
 
     @Override
