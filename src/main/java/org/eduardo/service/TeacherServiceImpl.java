@@ -47,9 +47,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
             e.printStackTrace();
             throw new dataRecoveryException("Error al recuperar la lista de profesores.", e);
         } finally {
-            if (manager.isOpen()) {
-                manager.close();
-            }
+            EntityManagerUtil.closeEntityManager(manager);
         }
         return teachers;
     }
@@ -68,7 +66,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
             e.printStackTrace();
             return null;
         } finally {
-            manager.close();
+            EntityManagerUtil.closeEntityManager(manager);
         }
     }
 
@@ -84,7 +82,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
             manager.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            manager.close();
+            EntityManagerUtil.closeEntityManager(manager);
         }
     }
 
@@ -100,7 +98,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
             manager.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            manager.close();
+            EntityManagerUtil.closeEntityManager(manager);
         }
     }
 }

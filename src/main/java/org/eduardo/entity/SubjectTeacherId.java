@@ -1,13 +1,13 @@
 package org.eduardo.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Embeddable
-@Data
+@Getter
+@Setter
 public class SubjectTeacherId implements Serializable {
 
     private Group group;

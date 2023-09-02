@@ -5,15 +5,22 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class EntityManagerUtil {
-    private static final String PERSISTENCE_UNIT_NAME = "JPA";
 
-    private static final EntityManagerFactory entityManagerFactory;
+    //EnttityManager personalizado
+    private static final String PERSISTENCE_UNIT_NAME = "JPA";
+    private static final EntityManagerFactory emFactory;
 
     static {
-        entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     }
 
     public static EntityManager getEntityManager() {
-        return entityManagerFactory.createEntityManager();
+        return emFactory.createEntityManager();
+    }
+
+    public static void closeEntityManager(EntityManager entityManager) {
+        if (entityManager != null && entityManager.isOpen()) {
+            entityManager.close();
+        }
     }
 }

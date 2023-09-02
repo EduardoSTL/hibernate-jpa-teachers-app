@@ -25,4 +25,14 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher")
     private List<SubjectTeacher> subjectTeachers;
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", subjectTeachers=" + subjectTeachers +
+                '}';
+    }
 }
