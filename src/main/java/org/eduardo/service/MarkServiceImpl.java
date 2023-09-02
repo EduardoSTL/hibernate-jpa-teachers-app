@@ -2,61 +2,63 @@ package org.eduardo.service;
 
 import jakarta.persistence.EntityManager;
 import org.eduardo.entity.Group;
+import org.eduardo.entity.Mark;
 import org.eduardo.entity.Teacher;
 import org.eduardo.exception.dataNotFoundException;
 import org.eduardo.exception.dataRecoveryException;
 import org.eduardo.repository.CrudGenericRepository;
-import org.eduardo.repository.GroupRepository;
+import org.eduardo.repository.MarkRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class GroupServiceImpl implements GenericService<Group> {
+public class MarkServiceImpl implements GenericService<Mark> {
     private final EntityManager manager;
-    private CrudGenericRepository<Group> repository;
 
-    public GroupServiceImpl(EntityManager manager) {
+    private CrudGenericRepository<Mark> repository;
+
+    public MarkServiceImpl(EntityManager manager) {
         this.manager = manager;
-        this.repository = new GroupRepository(manager);
+        this.repository = new MarkRepository(manager);
     }
 
     @Override
-    public List<Group> create() {
-        System.out.println("--------- Crear Grupo ---------");
+    public List<Mark> create() {
+        System.out.println("--------- Crear Mark ---------");
         return repository.create();
     }
 
     @Override
-    public Optional<Group> findById(Integer id) {
-        System.out.println("--------- Buscar Grupo por id ---------");
+    public Optional<Mark> findById(Integer id) {
+        System.out.println("--------- Buscar Mark por id ---------");
         return Optional.ofNullable(repository.findById(id));
     }
 
     @Override
-    public Iterable<Group> findAll() {
+    public Iterable<Mark> findAll() {
         try {
-            List<Group> groups = repository.findAll();
-            if (groups.isEmpty()) {
-                throw new dataNotFoundException("No se encontraron registros de Grupos");
+            List<Mark> marks = repository.findAll();
+            if (marks.isEmpty()) {
+                throw new dataNotFoundException("No se encontraron registros de Marks");
             }
-            return groups;
+            return marks;
         } catch (Exception e) {
             manager.getTransaction().rollback();
             e.printStackTrace();
-            throw new dataRecoveryException("Error al recuperar la lista de grupos.", e);
+            throw new dataRecoveryException("Error al recuperar la lista de marks", e);
         } finally {
             manager.close();
         }
     }
 
     @Override
-    public Group save(Group entidad) {
+    public Mark save(Mark entidad) {
         try {
-            System.out.println("--------- Guardar Grupo ---------");
+            System.out.println("--------- Guardar Mark ---------");
             manager.getTransaction().begin();
-            Group savedGroup = repository.save(entidad);
+            Mark savedMark = repository.save(entidad);
             manager.getTransaction().commit();
-            return savedGroup;
+            return savedMark;
         } catch (Exception e){
             manager.getTransaction().rollback();
             e.printStackTrace();
@@ -69,7 +71,7 @@ public class GroupServiceImpl implements GenericService<Group> {
     @Override
     public void deleteById(Integer id) {
         try {
-            System.out.println("--------- Eliminar Grupo ---------");
+            System.out.println("--------- Eliminar Mark ---------");
             manager.getTransaction().begin();
             repository.delete(id);
             manager.getTransaction().commit();
@@ -84,7 +86,7 @@ public class GroupServiceImpl implements GenericService<Group> {
     @Override
     public void edit(Integer id) {
         try {
-            System.out.println("--------- Editar Grupo ---------");
+            System.out.println("--------- Editar Mark ---------");
             manager.getTransaction().begin();
             repository.edit(id);
             manager.getTransaction().commit();

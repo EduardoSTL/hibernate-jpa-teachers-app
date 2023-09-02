@@ -38,7 +38,7 @@ public class TeacherServiceImpl implements GenericService<Teacher>{
         try {
             List<Teacher> teachers = repository.findAll();
             if (teachers.isEmpty()) {
-                throw new dataNotFoundException("No se encontraron registros de Teacher");
+                throw new dataNotFoundException("No se encontraron registros de Teachers");
             }
             return teachers;
         } catch (Exception e) {
