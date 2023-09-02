@@ -1,7 +1,10 @@
 package org.eduardo.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import org.eduardo.entity.Group;
 import org.eduardo.entity.Mark;
+import org.eduardo.entity.Teacher;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -54,5 +57,11 @@ public class MarkRepository implements CrudGenericRepository<Mark>{
     public void delete(Integer id) {
         Mark mark = findById(id);
         manager.remove(mark);
+    }
+
+    @Override
+    public List<Mark> findAll() {
+        TypedQuery<Mark> query = manager.createQuery("select m from Mark m", Mark.class);
+        return query.getResultList();
     }
 }

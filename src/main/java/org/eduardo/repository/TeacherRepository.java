@@ -3,10 +3,8 @@ package org.eduardo.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.eduardo.entity.Teacher;
-import org.eduardo.exception.dataNotFoundException;
 
 import javax.swing.*;
-import java.util.Collections;
 import java.util.List;
 
 public class TeacherRepository implements CrudGenericRepository<Teacher>{
@@ -54,7 +52,7 @@ public class TeacherRepository implements CrudGenericRepository<Teacher>{
 
     @Override
     public List<Teacher> findAll() {
-        TypedQuery<Teacher> query = manager.createQuery("SELECT t FROM Teacher t", Teacher.class);
+        TypedQuery<Teacher> query = manager.createQuery("select t from Teacher t", Teacher.class);
         return query.getResultList();
     }
 }

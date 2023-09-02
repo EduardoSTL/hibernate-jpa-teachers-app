@@ -8,4 +8,5 @@ public interface CrudGenericRepository <T>{
     void save(T t);
     void edit(Integer id);
     void delete(Integer id);
+    List<T> findAll();
 }

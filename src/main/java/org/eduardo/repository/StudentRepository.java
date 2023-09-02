@@ -1,7 +1,7 @@
 package org.eduardo.repository;
 
 import jakarta.persistence.EntityManager;
-import org.eduardo.entity.Group;
+import jakarta.persistence.TypedQuery;
 import org.eduardo.entity.Student;
 
 import javax.swing.*;
@@ -48,5 +48,11 @@ public class StudentRepository implements CrudGenericRepository<Student>{
     public void delete(Integer id) {
         Student student = findById(id);
         manager.remove(student);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        TypedQuery<Student> query = manager.createQuery("select s from Student s", Student.class);
+        return query.getResultList();
     }
 }

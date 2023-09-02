@@ -1,6 +1,7 @@
 package org.eduardo.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.eduardo.entity.Group;
 
 import javax.swing.*;
@@ -26,15 +27,10 @@ public class GroupRepository implements CrudGenericRepository<Group> {
 
     @Override
     public void save(Group group) {
-        try {
-            manager.getTransaction().begin();
+        if (group.getId()!=null && group.getId()>0){
+            manager.merge(group);
+        } else {
             manager.persist(group);
-            manager.getTransaction().commit();
-        } catch (Exception e){
-            manager.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            manager.close();
         }
     }
 
@@ -51,5 +47,11 @@ public class GroupRepository implements CrudGenericRepository<Group> {
     public void delete(Integer id) {
         Group group = findById(id);
         manager.remove(group);
+    }
+
+    @Override
+    public List<Group> findAll() {
+        TypedQuery<Group> query = manager.createQuery("select g from Group g", Group.class);
+        return query.getResultList();
     }
 }
